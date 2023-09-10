@@ -11,30 +11,36 @@ public class Spawner : MonoBehaviour
     private Transform[] pathOptions;
 
     [SerializeField]
-    private float spawnInterval = 5f;
+    private float spawnCountdown = 3f;
 
-    private float timer;
-
-    void Start()
-    {
-        timer = spawnInterval;
-    }
+    private int waveIndex = 0;
+    private float waveInterval = 5f;
 
     void Update()
     {
-        SpawnUnit();
+        spawnCountdown -= Time.deltaTime;
+
+        if (spawnCountdown <= 0f)
+        {
+            StartCoroutine(SpawnWave());
+            spawnCountdown = waveInterval;
+        }
+    }
+
+    private IEnumerator SpawnWave()
+    {
+        waveIndex++;
+
+        for (int i = 0; i < waveIndex; i++)
+        {
+            SpawnUnit();
+            yield return new WaitForSeconds(0.75f);
+        }
     }
 
     private void SpawnUnit()
     {
-        timer += Time.deltaTime;
-
-        if (timer >= spawnInterval)
-        {
-            var newUnit = Instantiate(unit, transform.position, Quaternion.identity, transform);
-            newUnit.GetComponent<PathFollower>().path = pathOptions[Random.Range(0, pathOptions.Length)];
-
-            timer = 0;
-        }
+        var newUnit = Instantiate(unit, transform.position, Quaternion.identity, transform);
+        newUnit.GetComponent<PathFollower>().path = pathOptions[Random.Range(0, pathOptions.Length)];
     }
 }
