@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField]
-    private GameObject unit;
+    private GameObject[] units;
 
     [SerializeField]
     private Transform[] pathOptions;
@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
     {
         spawnCountdown -= Time.deltaTime;
 
-        if (spawnCountdown <= 0f)
+        if (spawnCountdown <= 0f && waveIndex < WaveConfig.Level1WaveConfig.Count)
         {
             StartCoroutine(SpawnWave());
             spawnCountdown = waveInterval;
@@ -29,18 +29,19 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator SpawnWave()
     {
-        waveIndex++;
-
-        for (int i = 0; i < waveIndex; i++)
+        for (int i = 0; i < WaveConfig.Level1WaveConfig[waveIndex].spawnCount; i++)
         {
-            SpawnUnit();
+            SpawnUnit(waveIndex);
             yield return new WaitForSeconds(0.75f);
         }
+
+        waveIndex++;
     }
 
-    private void SpawnUnit()
+    private void SpawnUnit(int waveIndex)
     {
-        var newUnit = Instantiate(unit, transform.position, Quaternion.identity, transform);
+        var unitType = (int)WaveConfig.Level1WaveConfig[waveIndex].unitType;
+        var newUnit = Instantiate(units[unitType], transform.position, Quaternion.identity, transform);
         newUnit.GetComponent<PathFollower>().path = pathOptions[Random.Range(0, pathOptions.Length)];
     }
 }

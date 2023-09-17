@@ -625,7 +625,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.2899574, y: -0, z: -0, w: 0.9570396}
-  m_LocalPosition: {x: 500, y: 403, z: -258}
+  m_LocalPosition: {x: 483, y: 257, z: -39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -711,7 +711,7 @@ MonoBehaviour:
   pathOptions:
   - {fileID: 752196992}
   - {fileID: 619652195}
-  spawnInterval: 5
+  spawnCountdown: 3
 --- !u!1 &1163426885
 GameObject:
   m_ObjectHideFlags: 0
