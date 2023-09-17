@@ -2321,7 +2321,7 @@ GameObject:
   - component: {fileID: 930654132458971035}
   m_Layer: 0
   m_Name: Iguana
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2424,6 +2424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: {fileID: 0}
   moveSpeed: 20
+  rotationSpeed: 5
 --- !u!1 &6615109322524520572
 GameObject:
   m_ObjectHideFlags: 0

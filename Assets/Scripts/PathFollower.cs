@@ -9,6 +9,9 @@ public class PathFollower : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 20f;
 
+    [SerializeField]
+    private float rotationSpeed = 1f;
+
     private Transform[] waypoints;
     private int waypointIndex;
 
@@ -33,14 +36,21 @@ public class PathFollower : MonoBehaviour
                 moveSpeed * Time.deltaTime
             );
 
+            var direction = (waypoints[waypointIndex].position - transform.position).normalized;
+            if (direction != Vector3.zero)
+            {
+                var lookRotation = Quaternion.LookRotation(direction, Vector3.up);
+                transform.rotation = Quaternion.Slerp(
+                    transform.rotation,
+                    lookRotation,
+                    rotationSpeed * Time.deltaTime
+                );
+            }
+
             if (transform.position == waypoints[waypointIndex].position)
             {
                 waypointIndex += 1;
             }
-        }
-        else 
-        {
-            Destroy(gameObject);
         }
     }
 }

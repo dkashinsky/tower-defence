@@ -721,7 +721,7 @@ GameObject:
   - component: {fileID: 8055169862178046321}
   m_Layer: 0
   m_Name: Frog
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -821,6 +821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path: {fileID: 0}
   moveSpeed: 20
+  rotationSpeed: 5
 --- !u!1 &2652489585268104390
 GameObject:
   m_ObjectHideFlags: 0
