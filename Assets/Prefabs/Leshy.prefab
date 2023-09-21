@@ -1509,6 +1509,7 @@ GameObject:
   - component: {fileID: 1797635055802366955}
   - component: {fileID: 128985960340018248}
   - component: {fileID: 6824544880769746619}
+  - component: {fileID: -9021464204803849168}
   m_Layer: 0
   m_Name: Leshy
   m_TagString: Enemy
@@ -1613,6 +1614,20 @@ MonoBehaviour:
   path: {fileID: 0}
   moveSpeed: 20
   rotationSpeed: 5
+--- !u!114 &-9021464204803849168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7692044028916418449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b3a283625cd4d4ca838e2353857eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5400
+  power: 10
 --- !u!1 &7764793376206405354
 GameObject:
   m_ObjectHideFlags: 0

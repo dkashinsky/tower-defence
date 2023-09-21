@@ -2319,6 +2319,7 @@ GameObject:
   - component: {fileID: 4363825541832114302}
   - component: {fileID: 7306767518690599570}
   - component: {fileID: 930654132458971035}
+  - component: {fileID: 6486992646189072088}
   m_Layer: 0
   m_Name: Iguana
   m_TagString: Enemy
@@ -2425,6 +2426,20 @@ MonoBehaviour:
   path: {fileID: 0}
   moveSpeed: 20
   rotationSpeed: 5
+--- !u!114 &6486992646189072088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6610673341205545369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b3a283625cd4d4ca838e2353857eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  power: 1
 --- !u!1 &6615109322524520572
 GameObject:
   m_ObjectHideFlags: 0

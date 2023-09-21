@@ -719,6 +719,7 @@ GameObject:
   - component: {fileID: 6602769802552285293}
   - component: {fileID: 5053058976443423613}
   - component: {fileID: 8055169862178046321}
+  - component: {fileID: 4044072650457384211}
   m_Layer: 0
   m_Name: Frog
   m_TagString: Enemy
@@ -822,6 +823,20 @@ MonoBehaviour:
   path: {fileID: 0}
   moveSpeed: 20
   rotationSpeed: 5
+--- !u!114 &4044072650457384211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2631937159627380568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b3a283625cd4d4ca838e2353857eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  power: 1
 --- !u!1 &2652489585268104390
 GameObject:
   m_ObjectHideFlags: 0

@@ -942,6 +942,7 @@ GameObject:
   - component: {fileID: 8911150593363561304}
   - component: {fileID: 3594857570728644810}
   - component: {fileID: 3219309657375985856}
+  - component: {fileID: 967042679938943710}
   m_Layer: 0
   m_Name: Rabbit
   m_TagString: Enemy
@@ -1045,6 +1046,20 @@ MonoBehaviour:
   path: {fileID: 0}
   moveSpeed: 20
   rotationSpeed: 5
+--- !u!114 &967042679938943710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5498636647184740807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b3a283625cd4d4ca838e2353857eb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  power: 1
 --- !u!1 &5882069785970841083
 GameObject:
   m_ObjectHideFlags: 0
