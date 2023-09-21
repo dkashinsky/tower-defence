@@ -39,9 +39,18 @@ public class GameManager : MonoBehaviour
         OnMoneyChange?.Invoke(money);
     }
 
+    public GameObject GetPrefabToBuild()
+    {
+        return prefabToBuild;
+    }
+
     public void SetPrefabToBuild(GameObject prefab)
     {
-        prefabToBuild = prefab;
-        OnPrefabToBuildChange?.Invoke(prefab);
+        // deselect if same prefab is already selected
+        prefabToBuild = prefabToBuild == prefab 
+            ? null 
+            : prefab;
+
+        OnPrefabToBuildChange?.Invoke(prefabToBuild);
     }
 }
