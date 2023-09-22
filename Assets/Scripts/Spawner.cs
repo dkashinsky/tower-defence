@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -11,36 +10,39 @@ public class Spawner : MonoBehaviour
     private Transform[] pathOptions;
 
     [SerializeField]
-    private float spawnCountdown = 3f;
+    private float spawnCountdown = 5f;
 
     private int waveIndex = 0;
-    private float waveInterval = 5f;
+
+    void Start()
+    {
+        spawnCountdown = WaveConfig.WavesConfig[waveIndex].delay;
+    }
 
     void Update()
     {
         spawnCountdown -= Time.deltaTime;
 
-        if (spawnCountdown <= 0f && waveIndex < WaveConfig.Level1WaveConfig.Count)
+        if (spawnCountdown <= 0f && waveIndex < WaveConfig.WavesConfig.Count)
         {
-            StartCoroutine(SpawnWave());
-            spawnCountdown = waveInterval;
+            StartCoroutine(SpawnWave(WaveConfig.WavesConfig[waveIndex]));
+            spawnCountdown = WaveConfig.WavesConfig[waveIndex + 1].delay;
+            waveIndex++;
         }
     }
 
-    private IEnumerator SpawnWave()
+    private IEnumerator SpawnWave(WaveConfig config)
     {
-        for (int i = 0; i < WaveConfig.Level1WaveConfig[waveIndex].spawnCount; i++)
+        for (int i = 0; i < config.spawnCount; i++)
         {
-            SpawnUnit(waveIndex);
+            SpawnUnit(config);
             yield return new WaitForSeconds(0.75f);
         }
-
-        waveIndex++;
     }
 
-    private void SpawnUnit(int waveIndex)
+    private void SpawnUnit(WaveConfig config)
     {
-        var unitType = (int)WaveConfig.Level1WaveConfig[waveIndex].unitType;
+        var unitType = (int)config.unitType;
         var newUnit = Instantiate(units[unitType], transform.position, Quaternion.identity, transform);
         newUnit.GetComponent<PathFollower>().path = pathOptions[Random.Range(0, pathOptions.Length)];
     }
