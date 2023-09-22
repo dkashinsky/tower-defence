@@ -13,7 +13,7 @@ public class TowerManager : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == "Enemy")
+        if (collider.gameObject.tag == ObjectTags.Enemy)
         {
             var enemy = collider
                 .gameObject

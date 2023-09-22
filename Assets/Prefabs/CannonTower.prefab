@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 40251357719486903}
-  - component: {fileID: 7878072325255227232}
+  - component: {fileID: 4887222618965095747}
   m_Layer: 0
   m_Name: CannonTower
   m_TagString: Untagged
@@ -33,9 +33,9 @@ Transform:
   - {fileID: 8144871527908543767}
   - {fileID: 4730422682895380651}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7878072325255227232
+--- !u!114 &4887222618965095747
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,11 +44,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3613067125550364035}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cebfd6bdbcc794042872ac348e7b1ad4, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c5cdd9348002ce44aa933ba29d6064f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   price: 200
   range: 50
+  gun: {fileID: 4730422682895380655}
+  rotationSpeed: 5
 --- !u!1001 &4730422682895247917
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60,6 +62,10 @@ PrefabInstance:
     - target: {fileID: 100012, guid: d99fcc1a11049db4a90d3fe159e6f8f9, type: 3}
       propertyPath: m_Name
       value: Cannon-Stage3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: d99fcc1a11049db4a90d3fe159e6f8f9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: d99fcc1a11049db4a90d3fe159e6f8f9, type: 3}
       propertyPath: m_RootOrder
@@ -106,13 +112,19 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2222254012832355925, guid: d99fcc1a11049db4a90d3fe159e6f8f9, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d99fcc1a11049db4a90d3fe159e6f8f9, type: 3}
 --- !u!4 &4730422682895380651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: d99fcc1a11049db4a90d3fe159e6f8f9, type: 3}
+  m_PrefabInstance: {fileID: 4730422682895247917}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4730422682895380655 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400002, guid: d99fcc1a11049db4a90d3fe159e6f8f9, type: 3}
   m_PrefabInstance: {fileID: 4730422682895247917}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7233330951898090547
@@ -126,6 +138,10 @@ PrefabInstance:
     - target: {fileID: 100012, guid: 8f42feff2bd80ba42b558771a1ee36ca, type: 3}
       propertyPath: m_Name
       value: Cannon-Stage1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 8f42feff2bd80ba42b558771a1ee36ca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: 8f42feff2bd80ba42b558771a1ee36ca, type: 3}
       propertyPath: m_RootOrder
@@ -192,6 +208,10 @@ PrefabInstance:
     - target: {fileID: 100012, guid: d8bff05783c706b4b82bc8a92cdcc55e, type: 3}
       propertyPath: m_Name
       value: Cannon-Stage2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: d8bff05783c706b4b82bc8a92cdcc55e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: d8bff05783c706b4b82bc8a92cdcc55e, type: 3}
       propertyPath: m_RootOrder
