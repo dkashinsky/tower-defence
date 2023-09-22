@@ -66,6 +66,7 @@ public class TowerBase : MonoBehaviour
         var gameObject = Instantiate(prefab, level.position, Quaternion.identity, transform);
         tower = gameObject.GetComponent<TowerController>();
         tower.OnTowerSell += OnTowerSellHandler;
+        tower.OnTowerUpgrade += OnTowerUpgradeHandler;
 
         auraRing.SetActive(false);
         gameManager.UpdateMoney(-tower.price);
@@ -76,15 +77,21 @@ public class TowerBase : MonoBehaviour
     {
         // temporarilty store price variable to not deal with object reference as it will be destroyed
         var sellPrice = tower.SellPrice;
-        
+
         // cleanup tower base
         tower.OnTowerSell -= OnTowerSellHandler;
+        tower.OnTowerUpgrade -= OnTowerUpgradeHandler;
         Destroy(tower.gameObject);
         tower = null;
 
         // management update
         gameManager.UpdateMoney(sellPrice);
         gameManager.SetSelectedTower(null);
+    }
+
+    private void OnTowerUpgradeHandler(int price)
+    {
+        gameManager.UpdateMoney(-price);
     }
 
     private void OnEnable()

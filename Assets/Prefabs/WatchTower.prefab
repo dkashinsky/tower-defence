@@ -65,6 +65,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: a47a9c2c93542634c9ca7eae31e9981d, type: 3}
+      propertyPath: m_TagString
+      value: Tower
+      objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: a47a9c2c93542634c9ca7eae31e9981d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -133,7 +137,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100016, guid: a6146b20c351a7144830cd4398038350, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: a6146b20c351a7144830cd4398038350, type: 3}
+      propertyPath: m_TagString
+      value: Tower
       objectReference: {fileID: 0}
     - target: {fileID: 400010, guid: a6146b20c351a7144830cd4398038350, type: 3}
       propertyPath: m_RootOrder
@@ -203,7 +211,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100010, guid: 0afdaea0de8ae4d41a0e229883a251c2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 0afdaea0de8ae4d41a0e229883a251c2, type: 3}
+      propertyPath: m_TagString
+      value: Tower
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 0afdaea0de8ae4d41a0e229883a251c2, type: 3}
       propertyPath: m_RootOrder

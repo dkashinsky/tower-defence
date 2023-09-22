@@ -8,6 +8,7 @@ public class TowerUpgradeController : MonoBehaviour
     private Button button;
     private TMP_Text priceText;
     private TowerController selectedTower;
+    private string maxPriceLabel = "max";
 
     void Awake()
     {
@@ -31,23 +32,34 @@ public class TowerUpgradeController : MonoBehaviour
             ? tower.GetComponent<TowerController>()
             : null;
 
-        if (selectedTower != null)
-        {
-            priceText.text = $"-{selectedTower.UpgradePrice}";
-            button.interactable = selectedTower.UpgradePrice <= gameManager.GetMoney();
-        }
+        UpdateUI(gameManager.GetMoney());
     }
 
     private void OnMoneyChangeHandler(int money)
     {
-        if (selectedTower != null)
-            button.interactable = selectedTower.UpgradePrice <= money;
+        UpdateUI(money);
     }
 
     private void OnButtonClick()
     {
         if (selectedTower != null)
+        {
             selectedTower.Upgrade();
+            UpdateUI(gameManager.GetMoney());
+        }
+    }
+
+    private void UpdateUI(int money)
+    {
+        if (selectedTower != null)
+        {
+            priceText.text = selectedTower.IsUpgradable
+                ? selectedTower.UpgradePrice.ToString()
+                : maxPriceLabel;
+            button.interactable =
+                selectedTower.IsUpgradable
+                && selectedTower.UpgradePrice <= money;
+        }
     }
 
     private void OnEnable()

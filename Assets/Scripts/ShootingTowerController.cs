@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class ShootingTowerController : TowerController
 {
-    public Transform gun;
     public float rotationSpeed;
 
     private Transform target;
+    private Transform gun;
 
     public void Start()
     {
@@ -47,5 +47,22 @@ public class ShootingTowerController : TowerController
             target = nearestEnemy.transform;
         else
             target = null;
+    }
+
+    public override void Awake()
+    {
+        base.Awake();
+        UpdateGunReference();
+    }
+
+    public override void Upgrade()
+    {
+        base.Upgrade();
+        UpdateGunReference();
+    }
+
+    private void UpdateGunReference()
+    {
+        gun = towerLevelPrefabs[towerLevel].transform.Find("gun");
     }
 }
