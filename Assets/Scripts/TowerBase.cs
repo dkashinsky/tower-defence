@@ -9,7 +9,7 @@ public class TowerBase : MonoBehaviour
     private GameManager gameManager;
     private GameObject auraRing;
     private Transform level;
-    private GameObject tower;
+    private TowerController tower;
 
     public bool IsInUse { get => tower != null; }
 
@@ -28,18 +28,16 @@ public class TowerBase : MonoBehaviour
 
     public void OnMouseDown()
     {
-        var prefab = gameManager.GetPrefabToBuild();
-        if (prefab != null && !IsInUse)
+        if (IsInUse)
         {
-            tower = Instantiate(prefab, level.position, Quaternion.identity, transform);
-            auraRing.SetActive(false);
+            gameManager.SetSelectedTower(tower.gameObject);
+            return;
+        }
 
-            var towerPrice = prefab
-                .GetComponent<TowerController>()
-                .price;
-
-            gameManager.UpdateMoney(-towerPrice);
-            gameManager.SetPrefabToBuild(null);
+        var prefab = gameManager.GetPrefabToBuild();
+        if (!IsInUse && prefab != null)
+        {
+            BuildTower(prefab);
         }
     }
 
@@ -61,6 +59,32 @@ public class TowerBase : MonoBehaviour
         {
             auraRing.SetActive(false);
         }
+    }
+
+    private void BuildTower(GameObject prefab)
+    {
+        var gameObject = Instantiate(prefab, level.position, Quaternion.identity, transform);
+        tower = gameObject.GetComponent<TowerController>();
+        tower.OnTowerSell += OnTowerSellHandler;
+
+        auraRing.SetActive(false);
+        gameManager.UpdateMoney(-tower.price);
+        gameManager.SetPrefabToBuild(null);
+    }
+
+    private void OnTowerSellHandler()
+    {
+        // temporarilty store price variable to not deal with object reference as it will be destroyed
+        var sellPrice = tower.SellPrice;
+        
+        // cleanup tower base
+        tower.OnTowerSell -= OnTowerSellHandler;
+        Destroy(tower.gameObject);
+        tower = null;
+
+        // management update
+        gameManager.UpdateMoney(sellPrice);
+        gameManager.SetSelectedTower(null);
     }
 
     private void OnEnable()

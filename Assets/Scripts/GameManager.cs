@@ -10,10 +10,12 @@ public class GameManager : MonoBehaviour
 
     public event Action<int> OnMoneyChange;
     public event Action<GameObject> OnPrefabToBuildChange;
+    public event Action<GameObject> OnSelectedTowerChange;
 
     private int health = 20;
     private int money = 150;
     private GameObject prefabToBuild;
+    private GameObject selectedTower;
 
     public void DeductLives(int lives)
     {
@@ -52,5 +54,20 @@ public class GameManager : MonoBehaviour
             : prefab;
 
         OnPrefabToBuildChange?.Invoke(prefabToBuild);
+    }
+
+    public GameObject GetSelectedTower()
+    {
+        return selectedTower;
+    }
+
+    public void SetSelectedTower(GameObject tower)
+    {
+        // deselect if same tower is already selected
+        selectedTower = selectedTower == tower 
+            ? null 
+            : tower;
+
+        OnSelectedTowerChange?.Invoke(selectedTower);
     }
 }

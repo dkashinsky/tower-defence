@@ -2,16 +2,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryController : MonoBehaviour
+public class TowerUpgradeController : MonoBehaviour
 {
-    public GameObject prefabToBuild;
-
     private GameManager gameManager;
     private Button button;
     private TMP_Text priceText;
-    private int price;
+    private TowerController selectedTower;
 
-    public void Awake()
+    void Awake()
     {
         // initialize prefab components
         gameManager = GameObject
@@ -19,44 +17,53 @@ public class InventoryController : MonoBehaviour
             .GetComponent<GameManager>();
 
         button = transform
-            .Find("InventoryIconButton")
+            .Find("Button")
             .GetComponent<Button>();
 
         priceText = transform
             .Find("PriceTag/Icon/PriceText")
             .GetComponent<TMP_Text>();
+    }
 
-        price = prefabToBuild
-            .GetComponent<TowerController>()
-            .price;
+    private void OnTowerChangeHandler(GameObject tower)
+    {
+        selectedTower = tower != null
+            ? tower.GetComponent<TowerController>()
+            : null;
+
+        if (selectedTower != null)
+        {
+            priceText.text = $"-{selectedTower.UpgradePrice}";
+            button.interactable = selectedTower.UpgradePrice <= gameManager.GetMoney();
+        }
     }
 
     private void OnMoneyChangeHandler(int money)
     {
-        // validate user player can build tower
-        button.interactable = money >= price;
+        if (selectedTower != null)
+            button.interactable = selectedTower.UpgradePrice <= money;
     }
 
     private void OnButtonClick()
     {
-        // set tower to build
-        gameManager.SetPrefabToBuild(prefabToBuild);
+        if (selectedTower != null)
+            selectedTower.Upgrade();
     }
 
     private void OnEnable()
     {
+        gameManager.OnSelectedTowerChange += OnTowerChangeHandler;
         gameManager.OnMoneyChange += OnMoneyChangeHandler;
         button.onClick.AddListener(OnButtonClick);
 
-        // setup price tag according to price variable
-        priceText.text = price.ToString();
-
         // syncronize initial button availability
+        OnTowerChangeHandler(gameManager.GetSelectedTower());
         OnMoneyChangeHandler(gameManager.GetMoney());
     }
 
     private void OnDisable()
     {
+        gameManager.OnSelectedTowerChange -= OnTowerChangeHandler;
         gameManager.OnMoneyChange -= OnMoneyChangeHandler;
         button.onClick.RemoveListener(OnButtonClick);
     }
