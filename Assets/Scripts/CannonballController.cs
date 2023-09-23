@@ -3,6 +3,7 @@ using UnityEngine;
 public class CannonballController : ProjectileController
 {
     public float explosionRadius;
+    public GameObject explosionPrefab;
     private Vector3 targetPosition;
 
     public override void FireAt(Transform target, int power)
@@ -17,15 +18,19 @@ public class CannonballController : ProjectileController
         var distanceThisFrame = projectileSpeed * Time.deltaTime;
         var direction = targetPosition - transform.position;
 
-        transform.Translate(direction.normalized * distanceThisFrame, Space.World);
-
         if (direction.magnitude <= distanceThisFrame)
+        {
             Explode();
+        }
+
+        transform.Translate(direction.normalized * distanceThisFrame, Space.World);
     }
 
     private void Explode()
     {
+        var explosion = Instantiate(explosionPrefab, targetPosition, transform.rotation);
         Destroy(gameObject);
+        Destroy(explosion, 3f);
         ApplyDamageToEnemies();
     }
 

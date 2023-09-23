@@ -12,7 +12,9 @@ public class GameManager : MonoBehaviour
     public event Action<GameObject> OnPrefabToBuildChange;
     public event Action<GameObject> OnSelectedTowerChange;
 
+    [SerializeField]
     private int health = 20;
+    [SerializeField]
     private int money = 150;
     private GameObject prefabToBuild;
     private GameObject selectedTower;

@@ -98,3 +98,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileSpeed: 80
   explosionRadius: 15
+  explosionPrefab: {fileID: 129134, guid: 3ad7829578f473a4a95c2e75c0f5ef6f, type: 3}
