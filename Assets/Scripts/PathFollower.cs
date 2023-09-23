@@ -12,6 +12,7 @@ public class PathFollower : MonoBehaviour
 
     private Transform[] waypoints;
     private int waypointIndex;
+    private float waypointThreshold = 1f;
 
     void Start()
     {
@@ -34,8 +35,8 @@ public class PathFollower : MonoBehaviour
                 moveSpeed * Time.deltaTime
             );
 
-            var direction = (waypoints[waypointIndex].position - transform.position).normalized;
-            if (direction != Vector3.zero)
+            var direction = waypoints[waypointIndex].position - transform.position;
+            if (direction.normalized != Vector3.zero)
             {
                 var lookRotation = Quaternion.LookRotation(direction, Vector3.up);
                 transform.rotation = Quaternion.Slerp(
@@ -45,7 +46,7 @@ public class PathFollower : MonoBehaviour
                 );
             }
 
-            if (transform.position == waypoints[waypointIndex].position)
+            if (direction.magnitude <= waypointThreshold)
             {
                 waypointIndex += 1;
             }
