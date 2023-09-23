@@ -2,14 +2,20 @@ using UnityEngine;
 
 public class ShootingTowerController : TowerController
 {
+    public float fireRate;
+    public int firePower;
     public float rotationSpeed;
+    public GameObject projectilePrefab;
 
     private Transform target;
     private Transform gun;
+    private Transform firePoint;
+    private float fireCountdown;
 
     public void Start()
     {
         InvokeRepeating(nameof(SelectTarget), 0f, 0.5f);
+        fireCountdown = GetFireCountdown();
     }
 
     public void Update()
@@ -17,6 +23,12 @@ public class ShootingTowerController : TowerController
         if (target == null)
             return;
 
+        AimAtTarget();
+        FireAtTarget();
+    }
+
+    private void AimAtTarget()
+    {
         var direction = target.position - transform.position;
         var lookRotation = Quaternion.LookRotation(direction);
         var newRotation = Quaternion.Lerp(
@@ -25,6 +37,21 @@ public class ShootingTowerController : TowerController
             rotationSpeed * Time.deltaTime
         ).eulerAngles;
         gun.rotation = Quaternion.Euler(0f, newRotation.y, 0f);
+    }
+
+    private void FireAtTarget()
+    {
+        fireCountdown -= Time.deltaTime;
+
+        if (fireCountdown <= 0)
+        {
+            var projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+            projectile
+                .GetComponent<ProjectileController>()
+                .FireAt(target);
+            
+            fireCountdown = GetFireCountdown();
+        }
     }
 
     public void SelectTarget()
@@ -63,6 +90,12 @@ public class ShootingTowerController : TowerController
 
     private void UpdateGunReference()
     {
-        gun = towerLevelPrefabs[towerLevel].transform.Find("gun");
+        gun = towerLevelPrefabs[towerLevel].transform.Find("head");
+        firePoint = towerLevelPrefabs[towerLevel].transform.Find("head/firePoint");
+    }
+
+    private float GetFireCountdown()
+    {
+        return 1f / fireRate;
     }
 }

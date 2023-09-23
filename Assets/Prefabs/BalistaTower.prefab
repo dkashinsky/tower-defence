@@ -49,8 +49,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 150
   range: 65
-  gun: {fileID: 6023025694816916853}
+  fireRate: 0.5
+  firePower: 100
   rotationSpeed: 10
+  projectilePrefab: {fileID: 500643704595558593, guid: 74390468b30fc224894a6c7eed872efc, type: 3}
 --- !u!1001 &1458029978312495759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -283,10 +285,5 @@ PrefabInstance:
 --- !u!4 &6023025694816916845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400016, guid: f6a4fc4619a19914aba02260df8b66b2, type: 3}
-  m_PrefabInstance: {fileID: 6023025694816784381}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6023025694816916853 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400008, guid: f6a4fc4619a19914aba02260df8b66b2, type: 3}
   m_PrefabInstance: {fileID: 6023025694816784381}
   m_PrefabAsset: {fileID: 0}
