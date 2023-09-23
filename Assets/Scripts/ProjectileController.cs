@@ -5,10 +5,12 @@ public class ProjectileController : MonoBehaviour
     public float projectileSpeed;
 
     protected Transform target;
+    protected int power;
 
-    public virtual void FireAt(Transform target)
+    public virtual void FireAt(Transform target, int power)
     {
         this.target = target;
+        this.power = power;
     }
 
     public virtual void Update()

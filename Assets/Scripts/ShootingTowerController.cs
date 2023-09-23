@@ -48,7 +48,7 @@ public class ShootingTowerController : TowerController
             var projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
             projectile
                 .GetComponent<ProjectileController>()
-                .FireAt(target);
+                .FireAt(target, firePower);
             
             fireCountdown = GetFireCountdown();
         }

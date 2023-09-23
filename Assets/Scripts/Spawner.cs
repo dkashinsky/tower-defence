@@ -14,11 +14,6 @@ public class Spawner : MonoBehaviour
 
     private int waveIndex = 0;
 
-    void Start()
-    {
-        spawnCountdown = WaveConfig.WavesConfig[waveIndex].delay;
-    }
-
     void Update()
     {
         spawnCountdown -= Time.deltaTime;
@@ -26,7 +21,7 @@ public class Spawner : MonoBehaviour
         if (spawnCountdown <= 0f && waveIndex < WaveConfig.WavesConfig.Count)
         {
             StartCoroutine(SpawnWave(WaveConfig.WavesConfig[waveIndex]));
-            spawnCountdown = WaveConfig.WavesConfig[waveIndex + 1].delay;
+            spawnCountdown = WaveConfig.WavesConfig[waveIndex].delay;
             waveIndex++;
         }
     }
@@ -44,6 +39,17 @@ public class Spawner : MonoBehaviour
     {
         var unitType = (int)config.unitType;
         var newUnit = Instantiate(units[unitType], transform.position, Quaternion.identity, transform);
-        newUnit.GetComponent<PathFollower>().path = pathOptions[Random.Range(0, pathOptions.Length)];
+
+        if (newUnit.TryGetComponent<PathFollower>(out var pathFollower))
+        {
+            pathFollower.path = pathOptions[Random.Range(0, pathOptions.Length)];
+            pathFollower.moveSpeed = config.speed;
+        }
+
+        if (newUnit.TryGetComponent<UnitController>(out var unit))
+        {
+            unit.health = config.health;
+            unit.power = config.power;
+        }
     }
 }

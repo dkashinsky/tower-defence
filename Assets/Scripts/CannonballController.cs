@@ -5,8 +5,10 @@ public class CannonballController : ProjectileController
     public float explosionRadius;
     private Vector3 targetPosition;
 
-    public override void FireAt(Transform target)
+    public override void FireAt(Transform target, int power)
     {
+        base.FireAt(target, power);
+
         targetPosition = target.position;
     }
 
@@ -24,6 +26,28 @@ public class CannonballController : ProjectileController
     private void Explode()
     {
         Destroy(gameObject);
-        // TODO: Implement explosion and damage to enemies within the esplosion radius
+        ApplyDamageToEnemies();
+    }
+
+    private void ApplyDamageToEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(ObjectTags.Enemy);
+        foreach (var enemy in enemies)
+        {
+            var distance = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distance <= explosionRadius)
+            {
+                // apply damage depending on the distance from the epicenter of explosion
+                enemy
+                    .GetComponent<UnitController>()
+                    .ApplyDamage(Mathf.FloorToInt(power * distance / explosionRadius));
+            }
+        }
+    }
+
+    public void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }

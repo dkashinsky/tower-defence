@@ -6,11 +6,9 @@ public class PathFollower : MonoBehaviour
 {
     public Transform path;
 
-    [SerializeField]
-    private float moveSpeed = 20f;
+    public float moveSpeed = 20f;
 
-    [SerializeField]
-    private float rotationSpeed = 1f;
+    public float rotationSpeed = 1f;
 
     private Transform[] waypoints;
     private int waypointIndex;
