@@ -5,10 +5,9 @@ using ExtensionMethods;
 public class PathFollower : MonoBehaviour
 {
     public Transform path;
-
     public float moveSpeed = 20f;
-
     public float rotationSpeed = 1f;
+    public bool isSlowedDown;
 
     private Transform[] waypoints;
     private int waypointIndex;
