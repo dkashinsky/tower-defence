@@ -40,6 +40,7 @@ public class InventoryController : MonoBehaviour
     private void OnButtonClick()
     {
         // set tower to build
+        gameManager.SetSelectedTower(null);
         gameManager.SetPrefabToBuild(prefabToBuild);
     }
 
