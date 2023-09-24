@@ -1,10 +1,12 @@
+using System;
 using UnityEngine;
 
 public class TowerBase : MonoBehaviour
 {
     public bool rangeModifier;
-    public bool damageModifier;
+    public bool powerModifier;
     public bool speedModifier;
+    public float modifierPercentage;
 
     private GameManager gameManager;
     private GameObject auraRing;
@@ -41,15 +43,16 @@ public class TowerBase : MonoBehaviour
         {
             // when base is not in use and prefab selected, build tower and set it selected
             tower = BuildTower(towerPrefab);
-                
+            ApplyModifiers(tower);
+
             gameManager.UpdateMoney(-tower.price);
             gameManager.SetPrefabToBuild(null);
             gameManager.SetSelectedTower(tower.gameObject);
-        } 
+        }
         else
         {
             gameManager.SetSelectedTower(null);
-        } 
+        }
     }
 
     private void OnPefabToBuildChange(GameObject prefab)
@@ -59,6 +62,10 @@ public class TowerBase : MonoBehaviour
             var towerRange = prefab
                 .GetComponent<TowerController>()
                 .range;
+                
+            towerRange = rangeModifier
+                ? GetModified(towerRange)
+                : towerRange;
 
             auraRing.SetActive(true);
             auraRing.transform.localScale = GetAuraScale(towerRange);
@@ -111,8 +118,27 @@ public class TowerBase : MonoBehaviour
     {
         float auraScaleFactor = 0.16428f;
         var scale = range * auraScaleFactor;
-        
+
         return new Vector3(scale, scale, scale);
+    }
+
+    private void ApplyModifiers(TowerController tower)
+    {
+        var shootingTower = tower as ShootingTowerController;
+
+        if (shootingTower != null && powerModifier)
+            shootingTower.firePower = Mathf.CeilToInt(GetModified(shootingTower.firePower));
+
+        if (shootingTower != null && speedModifier)
+            shootingTower.fireRate = GetModified(shootingTower.fireRate);
+
+        if (rangeModifier)
+            tower.range = GetModified(tower.range);
+    }
+
+    private float GetModified(float value)
+    {
+        return value + value * modifierPercentage / 100;
     }
 
     private void OnEnable()

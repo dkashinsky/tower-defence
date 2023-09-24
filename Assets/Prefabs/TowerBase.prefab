@@ -49,8 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rangeModifier: 0
-  damageModifier: 0
+  powerModifier: 0
   speedModifier: 0
+  modifierPercentage: 20
 --- !u!135 &7734230670238108970
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -28,7 +28,7 @@ public class CannonballController : ProjectileController
 
     private void Explode()
     {
-        var explosion = Instantiate(explosionPrefab, targetPosition, transform.rotation);
+        var explosion = Instantiate(explosionPrefab, targetPosition, Quaternion.identity);
         Destroy(gameObject);
         Destroy(explosion, 3f);
         ApplyDamageToEnemies();

@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   price: 200
   range: 50
-  fireRate: 0.25
+  fireRate: 0.33
   firePower: 150
   rotationSpeed: 5
   projectilePrefab: {fileID: 2676582930936497624, guid: b2427fc37bf31b44b861d73b9eda1962, type: 3}
