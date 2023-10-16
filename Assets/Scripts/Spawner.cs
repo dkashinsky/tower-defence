@@ -31,7 +31,7 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < config.spawnCount; i++)
         {
             SpawnUnit(config);
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(Random.Range(1.5f, 2.5f));
         }
     }
 
