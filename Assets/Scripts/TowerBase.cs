@@ -105,6 +105,9 @@ public class TowerBase : MonoBehaviour
     private void OnTowerUpgradeHandler(int price)
     {
         gameManager.UpdateMoney(-price);
+
+        // update aura ring to reflect upgrade in UI
+        auraRing.transform.localScale = GetAuraScale(tower.range);
     }
 
     private void OnSelectedTowerChangeHandler(GameObject towerGO)
