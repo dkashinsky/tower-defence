@@ -31,7 +31,11 @@ public class UnitController : MonoBehaviour
             health -= damage;
 
             // run hit animation
-            animator.SetInteger("moving", 2);
+            if (!isHit)
+            {
+                isHit = true;
+                animator.SetInteger("moving", 2);
+            }
 
             if (health <= 0)
             {
@@ -42,11 +46,6 @@ public class UnitController : MonoBehaviour
                 Destroy(gameObject, 5f);
             }
         }
-    }
-
-    public void OnHitAnimationStart()
-    {
-        isHit = true;
     }
 
     public void OnHitAnimationEnd()
