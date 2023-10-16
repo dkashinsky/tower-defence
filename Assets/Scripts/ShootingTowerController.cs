@@ -20,7 +20,7 @@ public class ShootingTowerController : TowerController
 
     public void Update()
     {
-        if (target == null)
+        if (target == null || !target.GetComponent<UnitController>().IsAlive)
             return;
 
         AimAtTarget();
@@ -49,7 +49,7 @@ public class ShootingTowerController : TowerController
             projectile
                 .GetComponent<ProjectileController>()
                 .FireAt(target, firePower);
-            
+
             fireCountdown = GetFireCountdown();
         }
     }
@@ -62,11 +62,14 @@ public class ShootingTowerController : TowerController
 
         foreach (var enemy in enemies)
         {
-            var distance = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distance < nearestDistance)
+            if (enemy.GetComponent<UnitController>().IsAlive)
             {
-                nearestDistance = distance;
-                nearestEnemy = enemy;
+                var distance = Vector3.Distance(transform.position, enemy.transform.position);
+                if (distance < nearestDistance)
+                {
+                    nearestDistance = distance;
+                    nearestEnemy = enemy;
+                }
             }
         }
 
