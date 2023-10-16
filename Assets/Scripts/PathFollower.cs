@@ -23,7 +23,8 @@ public class PathFollower : MonoBehaviour
 
     void Update()
     {
-        if (unit == null || unit.IsAlive)
+        // only move object if unit is alive and not hit
+        if (unit == null || (unit.IsAlive && !unit.IsHit))
             Move();
     }
 
