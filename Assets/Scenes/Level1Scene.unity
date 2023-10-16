@@ -23881,6 +23881,10 @@ PrefabInstance:
       value: TowerBase (4)
       objectReference: {fileID: 0}
     - target: {fileID: 3105555799926080944, guid: c837e2d62458c2647ba04c185ed7dfdc, type: 3}
+      propertyPath: modifier
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3105555799926080944, guid: c837e2d62458c2647ba04c185ed7dfdc, type: 3}
       propertyPath: speedModifier
       value: 1
       objectReference: {fileID: 0}
@@ -27912,6 +27916,10 @@ PrefabInstance:
     - target: {fileID: 2521583544249275031, guid: c837e2d62458c2647ba04c185ed7dfdc, type: 3}
       propertyPath: m_Name
       value: TowerBase (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3105555799926080944, guid: c837e2d62458c2647ba04c185ed7dfdc, type: 3}
+      propertyPath: modifier
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3105555799926080944, guid: c837e2d62458c2647ba04c185ed7dfdc, type: 3}
       propertyPath: rangeModifier
@@ -37405,8 +37413,16 @@ PrefabInstance:
       value: TowerBase
       objectReference: {fileID: 0}
     - target: {fileID: 3105555799926080944, guid: c837e2d62458c2647ba04c185ed7dfdc, type: 3}
+      propertyPath: modifier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3105555799926080944, guid: c837e2d62458c2647ba04c185ed7dfdc, type: 3}
       propertyPath: powerModifier
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3105555799926080944, guid: c837e2d62458c2647ba04c185ed7dfdc, type: 3}
+      propertyPath: rangeModifier
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

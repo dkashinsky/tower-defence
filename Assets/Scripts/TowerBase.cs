@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class TowerBase : MonoBehaviour
 {
-    public bool rangeModifier;
-    public bool powerModifier;
-    public bool speedModifier;
+    public TowerModifierEnum modifier;
     public float modifierPercentage;
+
+    public GameObject defaultAuraRingPrefab;
+    public GameObject rangeAuraRingPrefab;
+    public GameObject powerAuraRingPrefab;
+    public GameObject speedAuraRingPrefab;
 
     private GameManager gameManager;
     private GameObject auraRing;
@@ -21,9 +24,8 @@ public class TowerBase : MonoBehaviour
             .Find("GameManager")
             .GetComponent<GameManager>();
 
-        auraRing = transform
-            .Find("AuraRingLight")
-            .gameObject;
+        auraRing = GetAuraRing(
+            transform.Find("AuraPlacement"));
 
         level = transform.Find("Level");
     }
@@ -62,8 +64,8 @@ public class TowerBase : MonoBehaviour
             var towerRange = prefab
                 .GetComponent<TowerController>()
                 .range;
-                
-            towerRange = rangeModifier
+
+            towerRange = modifier == TowerModifierEnum.Range
                 ? GetModified(towerRange)
                 : towerRange;
 
@@ -129,19 +131,41 @@ public class TowerBase : MonoBehaviour
     {
         var shootingTower = tower as ShootingTowerController;
 
-        if (shootingTower != null && powerModifier)
+        if (shootingTower != null && modifier == TowerModifierEnum.Power)
             shootingTower.firePower = Mathf.CeilToInt(GetModified(shootingTower.firePower));
 
-        if (shootingTower != null && speedModifier)
+        if (shootingTower != null && modifier == TowerModifierEnum.Speed)
             shootingTower.fireRate = GetModified(shootingTower.fireRate);
 
-        if (rangeModifier)
+        if (modifier == TowerModifierEnum.Range)
             tower.range = GetModified(tower.range);
     }
 
     private float GetModified(float value)
     {
         return value + value * modifierPercentage / 100;
+    }
+
+    private GameObject GetAuraRing(Transform placement)
+    {
+        var auraRingPrefab = defaultAuraRingPrefab;
+
+        switch (modifier)
+        {
+            case TowerModifierEnum.Power:
+                auraRingPrefab = powerAuraRingPrefab;
+                break;
+
+            case TowerModifierEnum.Range:
+                auraRingPrefab = rangeAuraRingPrefab;
+                break;
+
+            case TowerModifierEnum.Speed:
+                auraRingPrefab = speedAuraRingPrefab;
+                break;
+        }
+
+        return Instantiate(auraRingPrefab, placement.position, placement.rotation, transform);
     }
 
     private void OnEnable()
