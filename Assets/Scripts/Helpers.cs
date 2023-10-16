@@ -10,7 +10,7 @@ namespace ExtensionMethods
         {
             foreach (Transform child in parent)
             {
-                if (child.gameObject.tag == tag)
+                if (child.gameObject.CompareTag(tag))
                     yield return child;
             }
         }

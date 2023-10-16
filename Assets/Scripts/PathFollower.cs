@@ -12,16 +12,19 @@ public class PathFollower : MonoBehaviour
     private Transform[] waypoints;
     private int waypointIndex;
     private float waypointThreshold = 1f;
+    private UnitController unit = null;
 
     void Start()
     {
+        unit = GetComponent<UnitController>();
         waypoints = path.GetChildrenByTag("Waypoint").ToArray();
         waypointIndex = 0;
     }
 
     void Update()
     {
-        Move();
+        if (unit == null || unit.IsAlive)
+            Move();
     }
 
     private void Move()

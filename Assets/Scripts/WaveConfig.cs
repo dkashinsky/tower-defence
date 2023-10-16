@@ -11,9 +11,9 @@ public class WaveConfig
 
     public static List<WaveConfig> WavesConfig = new List<WaveConfig>
     {
-        new WaveConfig { unitType = UnitTypeEnum.Frog, health = 300, power = 1, speed = 20f, spawnCount = 6, delay = 15f },
-        new WaveConfig { unitType = UnitTypeEnum.Iguana, health = 300, power = 1, speed = 20f, spawnCount = 6, delay = 20f },
-        new WaveConfig { unitType = UnitTypeEnum.Rabbit, health = 300, power = 1, speed = 20f, spawnCount = 6, delay = 25f },
+        new WaveConfig { unitType = UnitTypeEnum.Frog, health = 300, power = 1, speed = 6f, spawnCount = 6, delay = 15f },
+        new WaveConfig { unitType = UnitTypeEnum.Iguana, health = 300, power = 1, speed = 6f, spawnCount = 6, delay = 20f },
+        new WaveConfig { unitType = UnitTypeEnum.Rabbit, health = 300, power = 1, speed = 6f, spawnCount = 6, delay = 25f },
         new WaveConfig { unitType = UnitTypeEnum.Frog, health = 600, power = 1, speed = 14f, spawnCount = 6, delay = 15f },
         new WaveConfig { unitType = UnitTypeEnum.Iguana, health = 600, power = 1, speed = 14f, spawnCount = 6, delay = 20f },
         new WaveConfig { unitType = UnitTypeEnum.Rabbit, health = 600, power = 1, speed = 14f, spawnCount = 6, delay = 25f },
