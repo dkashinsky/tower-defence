@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
     private GameObject prefabToBuild;
     private GameObject selectedTower;
 
+    public void Awake()
+    {
+        healthText.text = health.ToString();
+        moneyText.text = money.ToString();
+    }
+
     public void DeductLives(int lives)
     {
         health -= lives;
