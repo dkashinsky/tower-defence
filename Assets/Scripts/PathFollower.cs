@@ -1,15 +1,12 @@
-using System.Linq;
 using UnityEngine;
-using ExtensionMethods;
 
 public class PathFollower : MonoBehaviour
 {
-    public Transform path;
+    public Transform[] waypoints;
     public float moveSpeed = 20f;
     public float rotationSpeed = 1f;
     public bool isSlowedDown;
 
-    private Transform[] waypoints;
     private int waypointIndex;
     private float waypointThreshold = 1f;
     private UnitController unit = null;
@@ -17,7 +14,6 @@ public class PathFollower : MonoBehaviour
     void Start()
     {
         unit = GetComponent<UnitController>();
-        waypoints = path.GetChildrenByTag("Waypoint").ToArray();
         waypointIndex = 0;
     }
 

@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Linq;
+using ExtensionMethods;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -38,19 +40,21 @@ public class Spawner : MonoBehaviour
     private void SpawnUnit(WaveConfig config)
     {
         var unitType = (int)config.unitType;
-        var newUnit = Instantiate(units[unitType], transform.position, Quaternion.identity, transform);
-        newUnit.transform.localScale = new Vector3(config.scale, config.scale, config.scale);
+        var path = pathOptions[Random.Range(0, pathOptions.Length)];
+        var waypoints = path.GetChildrenByTag("Waypoint").ToArray();
+        var unit = Instantiate(units[unitType], waypoints[0].position, Quaternion.identity, transform);
+        unit.transform.localScale = new Vector3(config.scale, config.scale, config.scale);
 
-        if (newUnit.TryGetComponent<PathFollower>(out var pathFollower))
+        if (unit.TryGetComponent<PathFollower>(out var pathFollower))
         {
-            pathFollower.path = pathOptions[Random.Range(0, pathOptions.Length)];
+            pathFollower.waypoints = waypoints;
             pathFollower.moveSpeed = config.speed;
         }
 
-        if (newUnit.TryGetComponent<UnitController>(out var unit))
+        if (unit.TryGetComponent<UnitController>(out var unitCtrl))
         {
-            unit.health = config.health;
-            unit.power = config.power;
+            unitCtrl.health = config.health;
+            unitCtrl.power = config.power;
         }
     }
 }
