@@ -8371,7 +8371,7 @@ MonoBehaviour:
   healthText: {fileID: 277131093}
   moneyText: {fileID: 580175397}
   health: 20
-  money: 2250
+  money: 250
 --- !u!4 &515574890 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4873473035346674, guid: e61f2e7cb9aa3964481cba790239ba73, type: 3}
