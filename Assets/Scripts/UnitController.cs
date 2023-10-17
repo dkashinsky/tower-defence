@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitController : MonoBehaviour
 {
     public int health;
     public int power;
+    public Slider healthBar;
 
     public bool IsAlive { get => health > 0; }
     public bool IsHit { get => isHit; }
@@ -23,12 +25,19 @@ public class UnitController : MonoBehaviour
         animator.SetInteger("moving", 1);
     }
 
+    public void Start()
+    {
+        healthBar.maxValue = health;
+        healthBar.value = health;
+    }
+
     public void ApplyDamage(int damage)
     {
         if (IsAlive)
         {
             // Only apply damage if unit is alive
             health -= damage;
+            healthBar.value = health > 0 ? health : 0;
 
             // run hit animation
             if (!isHit)

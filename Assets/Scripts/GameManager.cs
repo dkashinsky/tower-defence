@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     {
         enemiesCount--;
 
-        if (enemiesCount <= 0)
+        if (enemiesCount == 0)
             Invoke(nameof(LoadVictoryScene), 5f);
     }
 
