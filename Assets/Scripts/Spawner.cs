@@ -39,6 +39,7 @@ public class Spawner : MonoBehaviour
     {
         var unitType = (int)config.unitType;
         var newUnit = Instantiate(units[unitType], transform.position, Quaternion.identity, transform);
+        newUnit.transform.localScale = new Vector3(config.scale, config.scale, config.scale);
 
         if (newUnit.TryGetComponent<PathFollower>(out var pathFollower))
         {
