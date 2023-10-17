@@ -5,4 +5,5 @@ public class Scenes
     public const string Level2 = "Level2Scene";
     public const string Help = "HelpScene";
     public const string GameOver = "GameOverScene";
+    public const string Victory = "VictoryScene";
 }

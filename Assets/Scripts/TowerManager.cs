@@ -13,16 +13,14 @@ public class TowerManager : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.gameObject.tag == ObjectTags.Enemy)
+        if (collider.gameObject.CompareTag(ObjectTags.Enemy))
         {
             var enemy = collider
                 .gameObject
                 .GetComponent<UnitController>();
 
             gameManager.DeductLives(enemy.power);
-            gameManager.UpdateMoney(enemy.power * 50);
-
-            Destroy(collider.gameObject);
+            enemy.Kill();
         }
     }
 }

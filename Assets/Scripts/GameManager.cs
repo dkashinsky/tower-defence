@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     private int health = 20;
     [SerializeField]
     private int money = 150;
+    private int enemiesCount;
     private GameObject prefabToBuild;
     private GameObject selectedTower;
 
@@ -23,6 +25,24 @@ public class GameManager : MonoBehaviour
     {
         healthText.text = health.ToString();
         moneyText.text = money.ToString();
+
+        // calc number of total enemies to be spawned
+        enemiesCount = WaveConfig
+            .WavesConfig
+            .Sum(c => c.spawnCount);
+    }
+
+    public void DeductEnemy()
+    {
+        enemiesCount--;
+
+        if (enemiesCount <= 0)
+            Invoke(nameof(LoadVictoryScene), 5f);
+    }
+
+    public void LoadVictoryScene()
+    {
+        SceneManager.LoadScene(Scenes.Victory);
     }
 
     public void DeductLives(int lives)
@@ -31,9 +51,7 @@ public class GameManager : MonoBehaviour
         healthText.text = health.ToString();
 
         if (health <= 0)
-        {
             SceneManager.LoadScene(Scenes.GameOver);
-        }
     }
 
     public int GetMoney()
@@ -57,8 +75,8 @@ public class GameManager : MonoBehaviour
     public void SetPrefabToBuild(GameObject prefab)
     {
         // deselect if same prefab is already selected
-        prefabToBuild = prefabToBuild == prefab 
-            ? null 
+        prefabToBuild = prefabToBuild == prefab
+            ? null
             : prefab;
 
         OnPrefabToBuildChange?.Invoke(prefabToBuild);
@@ -72,8 +90,8 @@ public class GameManager : MonoBehaviour
     public void SetSelectedTower(GameObject tower)
     {
         // deselect if same tower is already selected
-        selectedTower = selectedTower == tower 
-            ? null 
+        selectedTower = selectedTower == tower
+            ? null
             : tower;
 
         OnSelectedTowerChange?.Invoke(selectedTower);

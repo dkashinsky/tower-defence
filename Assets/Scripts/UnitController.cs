@@ -38,13 +38,7 @@ public class UnitController : MonoBehaviour
             }
 
             if (health <= 0)
-            {
-                // increase money if unit died
-                gameManager.UpdateMoney(power * 50);
-
-                // destroy object in 5 seconds
-                Destroy(gameObject, 5f);
-            }
+                Kill();
         }
     }
 
@@ -56,5 +50,17 @@ public class UnitController : MonoBehaviour
             animator.SetInteger("moving", 1);
         else
             animator.SetInteger("moving", 12);
+    }
+
+    public void Kill(bool destroyImmediately = false)
+    {
+        // increase game money
+        gameManager.UpdateMoney(power * 50);
+
+        // count destroyed
+        gameManager.DeductEnemy();
+
+        // destroy object
+        Destroy(gameObject, destroyImmediately ? 0 : 5f);
     }
 }
