@@ -70,7 +70,7 @@ public class TowerBase : MonoBehaviour
                 : towerRange;
 
             auraRing.SetActive(true);
-            auraRing.transform.localScale = GetAuraScale(towerRange);
+            SetAuraRadius(towerRange);
         }
         else
         {
@@ -109,22 +109,24 @@ public class TowerBase : MonoBehaviour
         gameManager.UpdateMoney(-price);
 
         // update aura ring to reflect upgrade in UI
-        auraRing.transform.localScale = GetAuraScale(tower.range);
+        SetAuraRadius(tower.range);
     }
 
     private void OnSelectedTowerChangeHandler(GameObject towerGO)
     {
         auraRing.SetActive(towerGO != null && tower != null && tower.gameObject == towerGO);
         if (auraRing.activeSelf)
-            auraRing.transform.localScale = GetAuraScale(tower.range);
+            SetAuraRadius(tower.range);
     }
 
-    private Vector3 GetAuraScale(float range)
+    private void SetAuraRadius(float range)
     {
-        float auraScaleFactor = 0.16428f;
-        var scale = range * auraScaleFactor;
+        var particles = auraRing.transform
+            .Find("SpinningParticles")
+            .GetComponent<ParticleSystem>();
+        var shape = particles.shape;
 
-        return new Vector3(scale, scale, scale);
+        shape.radius = range;
     }
 
     private void ApplyModifiers(TowerController tower)
