@@ -1410,13 +1410,14 @@ MonoBehaviour:
     towers which will produce damage to enemies and help you gain game coins to build
     new or improve existing towers. \r\n\r\n\tTowers can be only built on special
     tower basements. To build a tower you need to have enough game coins. Click on
-    the tower icon in the top right corner and select available basement. It will
+    the tower icon in the bottom left corner and select available basement. It will
     also highlight the range which will be covered by that tower.\r\n\r\n\tThere
-    are 3 types of towers:\r\n\t\t- Ballista - fires a bolt at a single enemy\r\n\t\t-
+    are 3 types of towers:\r\n\t\t- Balista - fires a bolt at a single enemy\r\n\t\t-
     Cannon - fires cannonball which damage multiple enemies within the explosion
     radius\r\n\t\t- Watch - slows down enemies within tower range\r\n\r\n\tSome basements
-    have special enhancements, such as increased range or power. They are marked
-    with special indicators.\r\n\r\n\tGood luck, Commander!"
+    have special enhancements, such as increased range, power, and speed. They are
+    marked with special indicators such as green, orange, and blue respectively.\r\n\r\n\tGood
+    luck, Commander!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7a3bb906b3d75bb4d82d1932cca6f359, type: 2}
   m_sharedMaterial: {fileID: -4927877074079956469, guid: 7a3bb906b3d75bb4d82d1932cca6f359, type: 2}
@@ -1479,7 +1480,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: -14.908142, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
