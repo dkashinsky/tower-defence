@@ -89,6 +89,9 @@ public class ShootingTowerController : TowerController
     {
         base.Upgrade();
         UpdateGunReference();
+
+        // increase power by 50%
+        firePower += firePower / 2;
     }
 
     private void UpdateGunReference()
